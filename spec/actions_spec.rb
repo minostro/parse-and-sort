@@ -111,3 +111,27 @@ RSpec.describe Actions, "#sort_by_birth_date" do
     end
   end
 end
+
+RSpec.describe Actions, "#sort_by_gender" do
+  let(:female_person) {
+    Person.build(["Inostroza", "Milton2", "Female", "Black", "04/08/1985"])
+  }
+  let(:male_person) {
+    Person.build(["Inostroza", "Milton", "Male", "Blue", "04/08/1983"])
+  }
+
+  context "with one person" do
+    let(:people) { [female_person] }
+    it "returns a sorted array" do
+      expect(Actions.sort_by_gender(people)).to eq(people)
+    end
+  end
+
+  context "with more than one person" do
+    let(:people) { [male_person, female_person]}
+    it "returns a sorted array" do
+      expected_people = [female_person, male_person]
+      expect(Actions.sort_by_gender(people)).to eq(expected_people)
+    end
+  end
+end

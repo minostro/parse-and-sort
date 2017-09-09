@@ -12,6 +12,11 @@ module Actions
   end
 
   def self.sort_by_gender(people)
+    female = people.select{|person| person.gender == "Female" }
+    male = people.select{|person| person.gender == "Male" }
+    (female + male).sort do |left, right|
+      left.last_name <=> right.last_name
+    end
   end
 
   def self.sort_by_birth_date(people)

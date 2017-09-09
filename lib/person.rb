@@ -9,6 +9,9 @@ class Person
   end
 
   def self.build(attrs)
+    #TODO: Add checks for
+    #1.- number of attributes
+    #2.- gender: either female or male
     date_of_birth = attrs[4]
     attrs[4] = Date.parse(date_of_birth)
     Person.new(attrs)

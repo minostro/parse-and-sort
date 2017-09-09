@@ -9,6 +9,8 @@ class Person
   end
 
   def self.build(attrs)
+    date_of_birth = attrs[4]
+    attrs[4] = Date.parse(date_of_birth)
     Person.new(attrs)
   end
 end

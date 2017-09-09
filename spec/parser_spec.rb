@@ -22,7 +22,7 @@ RSpec.describe Parser, "#parse" do
       expect(person.first_name).to eq("Milton")
       expect(person.gender).to eq("Male")
       expect(person.favorite_color).to eq("Blue")
-      expect(person.date_of_birth).to eq("04/08/1983")
+      expect(person.date_of_birth).to eq(Date.parse("04/08/1983"))
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe Parser, "#parse" do
       expect(person.first_name).to eq("Milton")
       expect(person.gender).to eq("Male")
       expect(person.favorite_color).to eq("Blue")
-      expect(person.date_of_birth).to eq("04/08/1983")
+      expect(person.date_of_birth).to eq(Date.parse("04/08/1983"))
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Parser, "#parse" do
       expect(person.first_name).to eq("Milton")
       expect(person.gender).to eq("Male")
       expect(person.favorite_color).to eq("Blue")
-      expect(person.date_of_birth).to eq("04/08/1983")
+      expect(person.date_of_birth).to eq(Date.parse("04/08/1983"))
     end
   end
 end

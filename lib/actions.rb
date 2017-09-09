@@ -15,6 +15,7 @@ module Actions
   end
 
   def self.sort_by_birth_date(people)
+    people.sort{|left, right| left.date_of_birth <=> right.date_of_birth}
   end
 
   def self.sort_by_last_name(people)

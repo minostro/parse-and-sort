@@ -23,7 +23,7 @@ RSpec.describe Actions, "#build_people_from_string" do
       expect(person.first_name).to eq("Milton")
       expect(person.gender).to eq("Male")
       expect(person.favorite_color).to eq("Blue")
-      expect(person.date_of_birth).to eq("04/08/1983")
+      expect(person.date_of_birth).to eq(Date.parse("04/08/1983"))
     end
   end
 end
@@ -53,13 +53,13 @@ RSpec.describe Actions, "#build_people_from_file" do
       expect(first.first_name).to eq("Milton")
       expect(first.gender).to eq("Male")
       expect(first.favorite_color).to eq("Blue")
-      expect(first.date_of_birth).to eq("04/08/1983")
+      expect(first.date_of_birth).to eq(Date.parse("04/08/1983"))
 
       expect(second.last_name).to eq("Inostroza2")
       expect(second.first_name).to eq("Milton2")
       expect(second.gender).to eq("Female")
       expect(second.favorite_color).to eq("Black")
-      expect(second.date_of_birth).to eq("04/08/1985")
+      expect(second.date_of_birth).to eq(Date.parse("04/08/1985"))
     end
   end
 end
@@ -84,6 +84,30 @@ RSpec.describe Actions, "#sort_by_last_name" do
     it "returns a sorted array" do
       expected_people = [second_person, first_person]
       expect(Actions.sort_by_last_name(people)).to eq(expected_people)
+    end
+  end
+end
+
+RSpec.describe Actions, "#sort_by_birth_date" do
+  let(:first_person) {
+    Person.build(["Inostroza", "Milton", "Male", "Blue", "04/08/1983"])
+  }
+  let(:second_person) {
+    Person.build(["Inostroza2", "Milton2", "Female", "Black", "04/08/1985"])
+  }
+
+  context "with one person" do
+    let(:people) { [first_person] }
+    it "returns a sorted array" do
+      expect(Actions.sort_by_birth_date(people)).to eq(people)
+    end
+  end
+
+  context "with more than one person" do
+    let(:people) { [second_person, first_person]}
+    it "returns a sorted array" do
+      expected_people = [first_person, second_person]
+      expect(Actions.sort_by_birth_date(people)).to eq(expected_people)
     end
   end
 end

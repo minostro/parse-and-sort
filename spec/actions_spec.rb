@@ -1,4 +1,5 @@
 require 'actions'
+require 'person'
 
 RSpec.describe Actions, "#build_people_from_string" do
   let(:last_name) { "Inostroza" }
@@ -59,6 +60,30 @@ RSpec.describe Actions, "#build_people_from_file" do
       expect(second.gender).to eq("Female")
       expect(second.favorite_color).to eq("Black")
       expect(second.date_of_birth).to eq("04/08/1985")
+    end
+  end
+end
+
+RSpec.describe Actions, "#sort_by_last_name" do
+  let(:first_person) {
+    Person.build(["Inostroza", "Milton", "Male", "Blue", "04/08/1983"])
+  }
+  let(:second_person) {
+    Person.build(["Inostroza2", "Milton2", "Female", "Black", "04/08/1985"])
+  }
+
+  context "with one person" do
+    let(:people) { [first_person] }
+    it "returns a sorted array" do
+      expect(Actions.sort_by_last_name(people)).to eq(people)
+    end
+  end
+
+  context "with more than one person" do
+    let(:people) { [first_person, second_person]}
+    it "returns a sorted array" do
+      expected_people = [second_person, first_person]
+      expect(Actions.sort_by_last_name(people)).to eq(expected_people)
     end
   end
 end

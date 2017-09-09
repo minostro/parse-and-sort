@@ -1,4 +1,4 @@
-require 'person'
+require_relative 'person'
 
 module Parser
   def self.parse(string_data, delimiter)

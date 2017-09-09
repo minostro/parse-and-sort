@@ -7,4 +7,8 @@ class Person
     self.favorite_color,
     self.date_of_birth = attrs
   end
+
+  def self.build(attrs)
+    Person.new(attrs)
+  end
 end

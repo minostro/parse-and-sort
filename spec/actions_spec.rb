@@ -26,3 +26,39 @@ RSpec.describe Actions, "#build_people_from_string" do
     end
   end
 end
+
+RSpec.describe Actions, "#build_people_from_file" do
+  def create_test_file!(filepath, delimiter)
+    first = ["Inostroza", "Milton", "Male", "Blue", "04/08/1983"]
+    second = ["Inostroza2", "Milton2", "Female", "Black", "04/08/1985"]
+    result = [first, second].map do |person|
+      person.join(delimiter)
+    end.join("\n")
+    File.write(filepath, result)
+  end
+
+  context "with comma-delimited data" do
+    let(:delimiter) { "," }
+    let(:filepath) { "/tmp/test-data" }
+
+    it "returns an array of people" do
+      create_test_file!(filepath, delimiter)
+      people = Actions.build_people_from_file(filepath, delimiter)
+
+      first, second = people
+      expect(people.size).to eq(2)
+
+      expect(first.last_name).to eq("Inostroza")
+      expect(first.first_name).to eq("Milton")
+      expect(first.gender).to eq("Male")
+      expect(first.favorite_color).to eq("Blue")
+      expect(first.date_of_birth).to eq("04/08/1983")
+
+      expect(second.last_name).to eq("Inostroza2")
+      expect(second.first_name).to eq("Milton2")
+      expect(second.gender).to eq("Female")
+      expect(second.favorite_color).to eq("Black")
+      expect(second.date_of_birth).to eq("04/08/1985")
+    end
+  end
+end

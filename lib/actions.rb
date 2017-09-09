@@ -30,7 +30,7 @@ module Actions
   def self.people_to_string(people, delimiter)
     people.map do |person|
       person_to_string(person, delimiter)
-    end
+    end.join("\n")
   end
 
   private

@@ -152,7 +152,7 @@ RSpec.describe Actions, "#people_to_string" do
     it "returns an array that contains one pipe-delimited string" do
       result = Actions.people_to_string(people, delimiter)
       female_data[4] = "8/4/1985"
-      expect(result).to eq([female_data.join(delimiter)])
+      expect(result).to eq([female_data.join(delimiter)].join("\n"))
     end
   end
 
@@ -166,7 +166,7 @@ RSpec.describe Actions, "#people_to_string" do
       expect(result).to eq([
         male_data.join(delimiter),
         female_data.join(delimiter)
-      ])
+      ].join("\n"))
     end
   end
 end

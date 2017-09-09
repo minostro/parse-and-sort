@@ -28,8 +28,19 @@ module Actions
   end
 
   def self.people_to_string(people, delimiter)
+    people.map do |person|
+      person_to_string(person, delimiter)
+    end
   end
 
+  private
   def self.person_to_string(person, delimiter)
+    date_of_birth = person.date_of_birth
+    [ person.last_name,
+      person.first_name,
+      person.gender,
+      person.favorite_color,
+      date_of_birth.strftime("%-m/%-d/%Y")
+    ].join(delimiter)
   end
 end

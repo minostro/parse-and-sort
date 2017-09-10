@@ -1,8 +1,9 @@
 require 'rack'
 require 'json'
 
-require_relative 'lib/actions'
 require_relative 'lib/person'
+require_relative 'lib/actions'
+require_relative 'lib/presenter'
 
 GlobalState = {
   records: []
@@ -53,7 +54,7 @@ class RestApp
   end
 
   def self.build_get_response(people)
-    data = Actions.people_to_json(people)
+    data = Presenter.people_to_json(people)
     [200, {'Content-Type' => 'application/json'}, [data.to_s]]
   end
 end

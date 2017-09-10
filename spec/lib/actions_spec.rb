@@ -135,38 +135,3 @@ RSpec.describe Actions, "#sort_by_gender" do
     end
   end
 end
-
-RSpec.describe Actions, "#people_to_string" do
-  let(:female_data) {
-    ["Inostroza", "Milton2", "Female", "Black", "04/08/1985"]
-  }
-  let(:male_data) {
-    ["Inostroza", "Milton", "Male", "Blue", "04/08/1983"]
-  }
-  let(:female_person) { Person.build(female_data) }
-  let(:male_person) { Person.build(male_data) }
-
-  context "with one person" do
-    let(:people) { [female_person] }
-    let(:delimiter) { "|" }
-    it "returns an array that contains one pipe-delimited string" do
-      result = Actions.people_to_string(people, delimiter)
-      female_data[4] = "8/4/1985"
-      expect(result).to eq([female_data.join(delimiter)].join("\n"))
-    end
-  end
-
-  context "with more than one person" do
-    let(:people) { [male_person, female_person]}
-    let(:delimiter) { "|" }
-    it "returns an array that contains pipe-delimited strings" do
-      result = Actions.people_to_string(people, delimiter)
-      male_data[4] = "8/4/1983"
-      female_data[4] = "8/4/1985"
-      expect(result).to eq([
-        male_data.join(delimiter),
-        female_data.join(delimiter)
-      ].join("\n"))
-    end
-  end
-end

@@ -1,4 +1,5 @@
 require_relative 'lib/actions'
+require_relative 'lib/presenter'
 
 module CommandLineApp
   def self.main(filepath, delimiter)
@@ -10,7 +11,7 @@ module CommandLineApp
 
   private
   def self.output1(people, delimiter)
-    data = Actions.people_to_string(
+    data = Presenter.people_to_string(
       Actions.sort_by_gender(people),
       delimiter
     )
@@ -21,7 +22,7 @@ module CommandLineApp
   end
 
   def self.output2(people, delimiter)
-    data = Actions.people_to_string(
+    data = Presenter.people_to_string(
       Actions.sort_by_birth_date(people),
       delimiter
     )
@@ -32,7 +33,7 @@ module CommandLineApp
   end
 
   def self.output3(people, delimiter)
-    data = Actions.people_to_string(
+    data = Presenter.people_to_string(
       Actions.sort_by_last_name(people),
       delimiter
     )

@@ -35,7 +35,7 @@ class RestApp
       GlobalState[:records] = []
       [200, {}, []]
     else
-      false.to_s
+      [404, {}, []]
     end
   end
 

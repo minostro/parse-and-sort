@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'parser'
 
 module Actions
@@ -33,14 +34,29 @@ module Actions
     end.join("\n")
   end
 
+  def self.people_to_json(people)
+    people.map do |person|
+      person_to_hash(person)
+    end.to_json
+  end
+
   private
   def self.person_to_string(person, delimiter)
-    date_of_birth = person.date_of_birth
     [ person.last_name,
       person.first_name,
       person.gender,
       person.favorite_color,
-      date_of_birth.strftime("%-m/%-d/%Y")
+      person.date_of_birth.strftime("%-m/%-d/%Y")
     ].join(delimiter)
+  end
+
+  def self.person_to_hash(person)
+    {
+      last_name: person.last_name,
+      first_name: person.first_name,
+      gender: person.gender,
+      favorite_color: person.favorite_color,
+      date_of_birth: person.date_of_birth.strftime("%-m/%-d/%Y")
+    }
   end
 end

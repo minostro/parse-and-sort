@@ -3,10 +3,7 @@ require_relative '../command_line_app'
 RSpec.describe CommandLineApp, "#main" do
   context "with data from file" do
     let(:data) {
-      """
-      Inostroza,Milton,Male,Blue,04/08/1983\n
-      Inostroza,Milton2,Female,Black,04/08/1985
-      """
+      "Inostroza,Milton,Male,Blue,04/08/1983\nInostroza,Milton2,Female,Black,04/08/1985"
     }
     let(:expected_data) {
       """Output 1:
@@ -30,7 +27,7 @@ Inostroza,Milton2,Female,Black,8/4/1985
       tmp_file = "/tmp/test-file"
       File.write(tmp_file, data)
       expect {
-        CommandLineApp.main("test", ",")
+        CommandLineApp.main(tmp_file, ",")
       }.to output(expected_data).to_stdout
     end
   end
